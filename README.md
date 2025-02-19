@@ -16,8 +16,14 @@ SQL Commands
 9. \di: To list out all index command
 10. \q: To exit command
 11. ; : To end database command
-12. SELECT current_database(); :To select the current database
-13. SELECT current_schema(); :To select the current schema
-14. SELECT current_user; :To select the current user does not have perenthesis
+12. SELECT current_database(); :To select the current database command
+13. SELECT current_schema(); :To select the current schema command
+14. SELECT current_user; :To select the current user does not have command
+15. SELECT proname FROM pg-catalog.pg_proc: List out all the functions you can use command
+16. INSERT INTO {table name}("insert data values"): To insert data into a table command
+17. VALUES ("data values", "data values"): To enter data values command
+18. SELECT \* FROM posts;: To select all the data values from posts table command
+19. SELECT {column names} FROM {table name}; : To select specific column name from the table command
 
-SELECT proname FROM pg-catalog.pg_proc: List out all the functions you can use
+ALTER TABLE {table name}
+ADD COLUMN {NEW COlumn NAME} varchar(50) NOT NULL
