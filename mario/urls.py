@@ -21,7 +21,7 @@ from files.views import home, files
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", views.home, name=home),
-    path("files/", views.files, name=files)
+    path("", views.home, name="home"),
+    path("files/", views.files, name="files")
 
 ]
