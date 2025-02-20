@@ -1,8 +1,7 @@
-{% extends "files/base.html" %} {% block title %} All files {% endblock %} {%
-block content %}
+{% extends "files/base.html" %} {% block title %} View all files {% endblock %} {% block body %}
 <ul>
   {% for file in files %}
   <li><a href="{% url "file" file.id %}">{{file.name}}</a></li>
   {% endfor %}
 </ul>
-{% endblock %}
+{% endblock  %}
