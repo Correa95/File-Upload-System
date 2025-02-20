@@ -27,3 +27,17 @@
 
 ALTER TABLE {table name}
 ADD COLUMN {NEW COlumn NAME} varchar(50) NOT NULL
+
+# Creating a virtual commands
+
+1. py -m venv .venv: To create the virtual environment
+2. . .venv/Scripts/activate: To activate the virtual environment
+3. . .venv/Scripts/deactivate: To deactivate the virtual environment
+4. py pip install package-name: To install a python package
+5. pip freeze > requirements.txt: To create the requirements.txt file with all the install packages
+6. pip freeze: To check once more to for everything that was installed
+7. pip install {package name} follow by pip freeze > requirements.txt: Will make sure the package name is listed in the requirements.txt
+
+8. python -m venv .venv
+   . .venv/Scripts/activate
+   pip install -r requirements.txt: Say you downloaded project from a repo, you typically won't have the virtual environment This command get it up and running
