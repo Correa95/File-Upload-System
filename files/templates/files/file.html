@@ -1,10 +1,6 @@
-{% extends "files/base.html" %} 
-{% block title %}
-{{file.name}}{% endblock  %}
-
-{% block body %}
-<p>Here are the file details: {{file}}</p>
-<p>All <a href="{% url "file"%}">files</a></p>
-
-
+{% extends "files/base.html" %} {% block title %} File details {% endblock %} {%
+block body %}
+<h1>{{file.name}}</h1>
+<p>type: {{file.file_type}}</p>
+<a href="{% url 'files' %}">All files</a>
 {% endblock %}

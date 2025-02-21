@@ -11,13 +11,13 @@ def home(request):
 #     return HttpResponse("List of files")
 
 def files(request):
-    data = File.objects.all()
-    return render(request, "files/files.html", {"files":data})
+    files = File.objects.all()
+    return render(request, "files/files.html", {"files":files})
 
 def file(request, file_id):
-    f = File.objects.get(pk = file_id)
-    if f is not None:
-         return render(request, "files/files.html", {"files":f})
+    file = File.objects.get(pk = file_id)
+    if file is not None:
+        return render(request, "files/files.html", {"files":file})
     else:
         return Http404("file does not exit")
 
