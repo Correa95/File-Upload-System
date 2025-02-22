@@ -52,3 +52,7 @@ ADD COLUMN {NEW COlumn NAME} varchar(50) NOT NULL
 2. docker ps -a: Confirm the container is running with command
 3. docker exec -it files psql -U postgres: Connect postgres via psql
 4. docker stop files, docker rm {container name} : If you ever need to stop and remove the container you can with:
+
+<!-- Data serialization -->
+
+serializers.py file: which is required to go from a Python object to JSON. Here we define what attributes we want to be displayed in the JSON.
