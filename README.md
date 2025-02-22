@@ -42,9 +42,13 @@ ADD COLUMN {NEW COlumn NAME} varchar(50) NOT NULL
    . .venv/Scripts/activate
    pip install -r requirements.txt: Say you downloaded project from a repo, you typically won't have the virtual environment This command get it up and running
 
-9. Docker initial command: docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5431:5432 -d postgres
+<!-- Docker Commands -->
 
---name stands for docker container name {name given to the docker application}
--e stands for environmental variable {.end file}
--p stands for port mapping {port number}
--d stands for database provider
+1. Docker initial command: docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5431:5432 -d postgres
+   --name stands for docker container name {name given to the docker application}
+   -e stands for environmental variable {.end file}
+   -p stands for port mapping {port number}
+   -d stands for database provider
+2. docker ps -a: Confirm the container is running with command
+3. docker exec -it files psql -U postgres: Connect postgres via psql
+4. docker stop files, docker rm {container name} : If you ever need to stop and remove the container you can with:
