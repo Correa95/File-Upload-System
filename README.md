@@ -44,7 +44,7 @@ ADD COLUMN {NEW COlumn NAME} varchar(50) NOT NULL
 
 9. Docker initial command: docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5431:5432 -d postgres
 
---name stands for docker container name
--e stands for environmental variable
--p stands for port number
+--name stands for docker container name {name given to the docker application}
+-e stands for environmental variable {.end file}
+-p stands for port mapping {port number}
 -d stands for database provider
