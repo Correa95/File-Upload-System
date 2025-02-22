@@ -41,3 +41,10 @@ ADD COLUMN {NEW COlumn NAME} varchar(50) NOT NULL
 8. python -m venv .venv
    . .venv/Scripts/activate
    pip install -r requirements.txt: Say you downloaded project from a repo, you typically won't have the virtual environment This command get it up and running
+
+9. Docker initial command: docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5431:5432 -d postgres
+
+--name stands for docker container name
+-e stands for environmental variable
+-p stands for port number
+-d stands for database provider
