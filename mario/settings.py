@@ -80,21 +80,21 @@ WSGI_APPLICATION = 'mario.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DB_NAME = os.environ.get("RDS_DB_NAME")
-DB_USERNAME = os.environ.get("RDS_USERNAME")
-DB_PASSWORD = os.environ.get("RDS_PASSWORD")
-DB_HOST = os.environ.get("RDS_HOST")
-DB_PORT = os.environ.get("PORT")
+# DB_NAME = os.environ.get("RDS_DB_NAME")
+# DB_USERNAME = os.environ.get("RDS_USERNAME")
+# DB_PASSWORD = os.environ.get("RDS_PASSWORD")
+# DB_HOST = os.environ.get("RDS_HOST")
+# DB_PORT = os.environ.get("PORT")
 
 # Connecting database string
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': DB_NAME,
-        "USER": DB_USERNAME,
-        "PASSWORD": DB_PASSWORD,
-        "HOST": DB_HOST,
-        "PORT": DB_PORT,
+        # 'NAME': DB_NAME,
+        # "USER": DB_USERNAME,
+        # "PASSWORD": DB_PASSWORD,
+        # "HOST": DB_HOST,
+        # "PORT": DB_PORT,
         "OPTIONS": {
             "connect_timeout": 5
         }
