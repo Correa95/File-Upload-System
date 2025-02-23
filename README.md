@@ -56,3 +56,5 @@ ADD COLUMN {NEW COlumn NAME} varchar(50) NOT NULL
 <!-- Data serialization -->
 
 serializers.py file: which is required to go from a Python object to JSON. Here we define what attributes we want to be displayed in the JSON.
+
+docter is
