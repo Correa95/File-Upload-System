@@ -3,30 +3,86 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 from django.http import HttpResponse, Http404, JsonResponse
+from django.shortcuts import render, redirect
 from .models import File
 from .serializers import FileSerializer
 from .forms import UploadForm
 
 
 # Create your views here.
-@api_view(["GET"])
-def getFile(request, file_id):
-    try:
-        f = File.objects.get(pk = file_id, format= None)
-    except File.DoesNotExist:
-        return Response(status = status.HTTP_404_NOT_FOUND)
-    serializer = FileSerializer(f)
-    return JsonResponse({"file": serializer.data}, status=status.HTTP_200_OK)
+@api_view(['GET', 'PUT', 'DELETE'])
+def files(request,  file_id, format = None):
+    if request.method == 'GET':
+        serializer = FileSerializer(data)
+        return Response({'file': serializer.data}, status=status.HTTP_200_OK)
 
-# def home(request):
-#     return HttpResponse("Hello there")
 
-# def files(request):
-#     f = File.objects.all()
-#     serializer = FileSerializer(f, many = True)
-#     return JsonResponse(serializer.data, safe=False)
-    # return JsonResponse({"files": serializer.data})
+    if request.method == 'GET':
+        serializer = FileSerializer(data)
+        return Response({'file': serializer.data}, status=status.HTTP_200_OK)
+    
 
+    elif request.method == 'PATCH':
+        serializer = FileSerializer(data, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    
+    elif request.method == 'PUT':
+        serializer = FileSerializer(data, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        File.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+
+
+
+
+# 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# /////////////////////////
 
 # def file(request, file_id):
 #     f = File.objects.get(pk = file_id)
@@ -65,6 +121,23 @@ def getFile(request, file_id):
 #     if f:
 #         f.delete()
 #     return redirect(files)
+# /////////////////////
+# def getFile(request, file_id):
+#     try:
+#         f = File.objects.get(pk = file_id, format= None)
+#     except File.DoesNotExist:
+#         return Response(status = status.HTTP_404_NOT_FOUND)
+#     serializer = FileSerializer(f)
+#     return JsonResponse({"file": serializer.data}, status=status.HTTP_200_OK)
+
+
+# def files(request):
+#     f = File.objects.all()
+#     serializer = FileSerializer(f, many = True)
+#     return JsonResponse(serializer.data, safe=False)
+#     return JsonResponse({"files": serializer.data})
+
+
 
 
 # def files(request):
