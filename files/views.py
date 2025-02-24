@@ -5,12 +5,12 @@ from rest_framework.decorators import api_view
 from django.http import HttpResponse, Http404, JsonResponse
 from .models import File
 from .serializers import FileSerializer
-# from .forms import UploadForm
+from .forms import UploadForm
 
 
 # Create your views here.
 @api_view(["GET"])
-def file(request, file_id):
+def getFile(request, file_id):
     try:
         f = File.objects.get(pk = file_id, format= None)
     except File.DoesNotExist:
