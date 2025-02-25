@@ -56,3 +56,19 @@ ADD COLUMN {NEW COlumn NAME} varchar(50) NOT NULL
 <!-- Data serialization -->
 
 serializers.py file: which is required to go from a Python object to JSON. Here we define what attributes we want to be displayed in the JSON.
+
+## What are Migrations
+
+Migrations describe your database structure and changes made to the structure over time. These migrations can then be **applied** to generate the needed database.
+
+# SQL
+
+stands for structured query language and is a standard language for working with structured databases.
+
+## ORM
+
+An **object relational mapper** allows you to describe your tables using classes in your primary language, not SQL. Instead of working with table rows you will work with objects (instances of a class).
+
+The ORM creates a mapping between objects in code and rows in the database table. Instead of working with SQL directly you can work with a list of objects.
+
+A model is a Python class that defines the structure of our data. We will then be able to create a migration based on this data structure and automatically create the appropriate tables.

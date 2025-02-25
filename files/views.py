@@ -31,7 +31,8 @@ def files(request, format=None):
 @api_view(['GET', 'PUT', 'DELETE'])
 def files(request,  file_id, format = None):
     if request.method == 'GET':
-        serializer = FileSerializer(data)
+        data = File.objects.all()
+        serializer = FileSerializer(data, many=True)
         return Response({'file': serializer.data}, status=status.HTTP_200_OK)
     
 
@@ -134,8 +135,8 @@ def files(request,  file_id, format = None):
 #     if f:
 #         f.delete()
 #     return redirect(files)
-# /////////////////////
-# def getFile(request, file_id):
+
+# def file(request, file_id):
 #     try:
 #         f = File.objects.get(pk = file_id, format= None)
 #     except File.DoesNotExist:

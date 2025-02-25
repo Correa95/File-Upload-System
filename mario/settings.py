@@ -89,7 +89,7 @@ DB_NAME = os.environ.get("RDS_DB_NAME")
 DB_USERNAME = os.environ.get("RDS_USERNAME")
 DB_PASSWORD = os.environ.get("RDS_PASSWORD")
 DB_HOST = os.environ.get("RDS_HOST")
-DB_PORT = os.environ.get("PORT")
+DB_PORT = os.environ.get("RDS_PORT")
 
 # Connecting database string
 DATABASES = {
