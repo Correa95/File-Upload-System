@@ -7,10 +7,10 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
-    path("api/files/", views.files, name="files"),
 
-    path("api/files/<int:file_id>/", views.file, name="file"),
+    path("api/files/", views.getFiles, name="files"),
+
+    path("api/files/<int:file_id>/", views.getFile, name="file"),
 
     path('api/files/edit/<int:file_id>/', views.edit, name='edit'),
 
