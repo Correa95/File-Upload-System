@@ -60,29 +60,29 @@ def files(request,  file_id, format = None):
 
 
 
-@api_view(["PUT"])
-def edit(request, file_id):
-    name = request.POST.get('name')
-    file_type = request.POST.get('type')
-    data = File.objects.get(pk=file_id)
-    print(name, file_type, data)
+# @api_view(["PUT"])
+# def edit(request, file_id):
+#     name = request.POST.get('name')
+#     file_type = request.POST.get('type')
+#     data = File.objects.get(pk=file_id)
+#     print(name, file_type, data)
 
-    if data:
-        if name:
-            data.name = name
-        if file_type:
-            data.file_type = file_type
-        data.save()
-        return redirect(files)
-    else:
-        return redirect(files)
+#     if data:
+#         if name:
+#             data.name = name
+#         if file_type:
+#             data.file_type = file_type
+#         data.save()
+#         return redirect(files)
+#     else:
+#         return redirect(files)
 
-@api_view(["POST"])
-def upload(request):
-    form = UploadForm(request.POST, request.FILES)
-    if form.is_valid():
-        form.save()
-    return redirect(files)
+# @api_view(["POST"])
+# def upload(request):
+#     form = UploadForm(request.POST, request.FILES)
+#     if form.is_valid():
+#         form.save()
+#     return redirect(files)
 
 
 
@@ -112,13 +112,7 @@ def upload(request):
 
 
 
-def file(request, file_id):
-    try:
-        data = File.objects.get(pk = file_id, format= None)
-    except File.DoesNotExist:
-        return Response(status = status.HTTP_404_NOT_FOUND)
-    serializer = FileSerializer(data)
-    return JsonResponse({"file": serializer.data}, status=status.HTTP_200_OK)
+
 
 
 
