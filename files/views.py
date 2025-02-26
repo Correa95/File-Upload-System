@@ -10,50 +10,56 @@ from .forms import UploadForm
 
 
 # Create your views here.
-@api_view(['GET'])
-def getFiles(request):
+@api_view(['GET', 'POST'])
+def files(request, format=None):
     if request.method == 'GET':
         data = File.objects.all()
         serializer = FileSerializer(data, many=True)
-        return Response({'files': serializer.data}, status=status.HTTP_200_OK)
+        return Response({'files': serializer.data})
         
-@api_view(['GET'])
-def getFile(request, file_id):
-    data = File.objects.get(pk = file_id)
-    serializer = FileSerializer(data)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    elif request.method == 'POST':
+        serializer = FileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+@api_view(['GET', "PUT", "DELETE"])
+def file(request, file_id):
+    if request.method == "GET":
+        try:
+                f = File.objects.get(pk = file_id)
+        except File.DoesNotExist:
+                return Response(status = status.HTTP_404_NOT_FOUND)
+        serializer = FileSerializer(f)
+        return JsonResponse({"file": serializer.data}, status=status.HTTP_200_OK)
 
-@api_view(["POST"])
-def upload(request):
-    form = UploadForm(request.POST, request.FILES)
-    if form.is_valid():
-        form.save()
-    return Response(form, status=status.HTTP_200_OK)
-
-@api_view(["DELETE"])
-def delete(request, file_id):
-    f = File.objects.get(pk=file_id)   
-    if f:
-        f.delete()
-    return redirect(File)
-
-@api_view(["PUT"])
-def edit(request, file_id):
-    name = request.POST.get('name')
-    file_type = request.POST.get('type')
-    data = File.objects.get(pk=file_id)
-    print(name, file_type, data)
-
-    if data:
-        if name:
-            data.name = name
-        if file_type:
-            data.file_type = file_type
-        data.save()
+    elif request.method == 'DELETE':
+        f = File.objects.get(pk=file_id)   
+        if f:
+            f.delete()
         return redirect(File)
-    else:
-        return redirect(File)
+
+    elif request.method == 'PUT':
+        name = request.POST.get('name')
+        file_type = request.POST.get('type')
+        data = File.objects.get(pk=file_id)
+        print(name, file_type, data)
+
+        if data:
+            if name:
+                data.name = name
+            if file:
+                data.file_type = file_type
+            data.save()
+            return redirect(File)
+        else:
+            return redirect(File)
+
+
+
+
+
 
 
 
