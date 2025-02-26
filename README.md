@@ -72,3 +72,15 @@ An **object relational mapper** allows you to describe your tables using classes
 The ORM creates a mapping between objects in code and rows in the database table. Instead of working with SQL directly you can work with a list of objects.
 
 A model is a Python class that defines the structure of our data. We will then be able to create a migration based on this data structure and automatically create the appropriate tables.
+
+# Reset PostgreSQL Password
+
+If you suspect the password is incorrect, you can reset it using:
+Open PostgreSQL interactive shell:
+
+psql -U postgres
+If prompted for a password, enter the existing one. If you don’t remember it, proceed to the next step.
+
+# Reset the password inside PostgreSQL:
+
+ALTER USER postgres PASSWORD 'newpassword';
