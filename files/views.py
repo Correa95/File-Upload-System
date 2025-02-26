@@ -112,7 +112,13 @@ def upload(request):
 
 
 
-
+def file(request, file_id):
+    try:
+        data = File.objects.get(pk = file_id, format= None)
+    except File.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND)
+    serializer = FileSerializer(data)
+    return JsonResponse({"file": serializer.data}, status=status.HTTP_200_OK)
 
 
 
