@@ -15,13 +15,13 @@ def getFiles(request):
     if request.method == 'GET':
         data = File.objects.all()
         serializer = FileSerializer(data, many=True)
-        return Response({'files': serializer.data})
+        return Response({'files': serializer.data}, status=status.HTTP_200_OK)
         
 @api_view(['GET'])
 def getFile(request, file_id):
     data = File.objects.get(pk = file_id)
     serializer = FileSerializer(data)
-    return Response(serializer.data)
+    return Response(serializer.data, status=status.HTTP_200_OK)
     
 
 @api_view(["POST"])
@@ -29,14 +29,14 @@ def upload(request):
     form = UploadForm(request.POST, request.FILES)
     if form.is_valid():
         form.save()
-    return Response(files)
+    return Response(form, status=status.HTTP_200_OK)
 
 @api_view(["DELETE"])
 def delete(request, file_id):
     f = File.objects.get(pk=file_id)   
     if f:
         f.delete()
-    return redirect(files)
+    return redirect(File)
 
 @api_view(["PUT"])
 def edit(request, file_id):
@@ -51,9 +51,9 @@ def edit(request, file_id):
         if file_type:
             data.file_type = file_type
         data.save()
-        return redirect(files)
+        return redirect(File)
     else:
-        return redirect(files)
+        return redirect(File)
 
 
 
