@@ -26,20 +26,11 @@ def files(request, format=None):
     
 @api_view(['GET', "PUT", "DELETE"])
 def file(request, file_id):
-    if request.method == "GET":
-        try:
-                f = File.objects.get(pk = file_id)
-        except File.DoesNotExist:
-                return Response(status = status.HTTP_404_NOT_FOUND)
-        serializer = FileSerializer(f)
-        return JsonResponse({"file": serializer.data}, status=status.HTTP_200_OK)
-
-    elif request.method == 'DELETE':
-        f = File.objects.get(pk=file_id)   
-        if f:
-            f.delete()
-        return redirect(File)
-
+    if request.method == 'GET':
+        data = File.objects.get(pk = file_id)
+        serializer = FileSerializer(data)
+        return Response({'file': serializer.data}, status=status.HTTP_200_OK)
+    
     elif request.method == 'PUT':
         name = request.POST.get('name')
         file_type = request.POST.get('type')
@@ -47,15 +38,21 @@ def file(request, file_id):
         print(name, file_type, data)
 
         if data:
-            if name:
-                data.name = name
-            if file:
-                data.file_type = file_type
-            data.save()
-            return redirect(File)
+                if name:
+                    data.name = name
+                if file_type:
+                    data.file_type = file_type
+                data.save()
+                return redirect(files)
         else:
-            return redirect(File)
+                return redirect(files)
 
+    elif request.method == 'DELETE':
+        data.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+   
+        
 
 
 
@@ -192,4 +189,27 @@ def file(request, file_id):
 #             return Response(serializer.data)
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+ # try:
+        #         f = File.objects.get(pk = file_id)
+        # except File.DoesNotExist:
+        #         return Response(status = status.HTTP_404_NOT_FOUND)
+        # serializer = FileSerializer(f)
+        # return JsonResponse({"file": serializer.data}, status=status.HTTP_200_OK)
+
+
+# name = request.POST.get('name')
+        # file_type = request.POST.get('type')
+        # data = File.objects.get(pk=file_id)
+        # print(name, file_type, data)
+
+        # if data:
+        #     if name:
+        #         data.name = name
+        #     if file:
+        #         data.file_type = file_type
+        #     data.save()
+        #     return redirect(File)
+        # else:
+        #     return redirect(File)
 
