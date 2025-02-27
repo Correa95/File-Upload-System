@@ -86,3 +86,9 @@ If prompted for a password, enter the existing one. If you don’t remember it, 
 ALTER USER postgres PASSWORD 'newpassword';
 
 A JSON web token is a long sequence of characters that encodes information about the logged in User as well as token lifetime (when the token expires).
+
+# Command to get a new SECRET_KEY
+
+py manage.py shell
+from django.core.management.utils import get_random_secret_key
+print(get_random_secret_key())

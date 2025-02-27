@@ -22,7 +22,7 @@ def register(request):
 @permission_classes([IsAuthenticated])
 def files(request, format=None):
     if request.method == 'GET':
-        data = File.objects.all()
+        data = request.user.file_set.all()
         serializer = FileSerializer(data, many=True)
         return Response({'files': serializer.data})
         
@@ -36,10 +36,13 @@ def files(request, format=None):
 @api_view(['GET', "PUT", "DELETE"])
 @permission_classes([IsAuthenticated])
 def file(request, file_id):
+    try:
+        data = request.user.file_set.get(pk=file_id) 
+    except File.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'GET':
-        data = File.objects.get(pk = file_id)
         serializer = FileSerializer(data)
-        return Response({'file': serializer.data}, status=status.HTTP_200_OK)
+    return Response({'file': serializer.data})
     
     elif request.method == 'PUT':
         name = request.POST.get('name')
