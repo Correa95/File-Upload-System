@@ -1,7 +1,8 @@
 # from django.shortcuts import render, redirect
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from django.http import HttpResponse, Http404, JsonResponse
 from django.shortcuts import render, redirect
 from .models import File
@@ -11,6 +12,7 @@ from .forms import UploadForm
 
 # Create your views here.
 @api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
 def files(request, format=None):
     if request.method == 'GET':
         data = File.objects.all()
@@ -25,6 +27,7 @@ def files(request, format=None):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 @api_view(['GET', "PUT", "DELETE"])
+@permission_classes([IsAuthenticated])
 def file(request, file_id):
     if request.method == 'GET':
         data = File.objects.get(pk = file_id)

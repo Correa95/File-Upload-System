@@ -84,3 +84,5 @@ If prompted for a password, enter the existing one. If you don’t remember it, 
 # Reset the password inside PostgreSQL:
 
 ALTER USER postgres PASSWORD 'newpassword';
+
+A JSON web token is a long sequence of characters that encodes information about the logged in User as well as token lifetime (when the token expires).
