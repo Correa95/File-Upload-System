@@ -6,11 +6,18 @@ from rest_framework.permissions import IsAuthenticated
 from django.http import HttpResponse, Http404, JsonResponse
 from django.shortcuts import render, redirect
 from .models import File
-from .serializers import FileSerializer
+from .serializers import FileSerializer, userSerializer
 from .forms import UploadForm
 
 
 # Create your views here.
+@api_view(['POST'])
+def register(request):
+     serializer = userSerializer(data = request.data)
+     if serializer.is_valid():
+          serializer.save()
+          return Response(status = status.HTTP_201_CREATED)
+
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 def files(request, format=None):

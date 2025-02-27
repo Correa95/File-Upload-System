@@ -4,11 +4,11 @@ from django.contrib.auth.models import User
 
 
 class userSerializer(serializers.ModelSerializer):
-    class meta:
+    class Meta:
         model = User
         fields = "__all__"
         write_only_fields = ("password")
-        read_only_fields = ("id")
+        read_only_fields = ("id",)
 
     def create(self, validated_data):
         user = User.objects.create( username = validated_data["username"],
