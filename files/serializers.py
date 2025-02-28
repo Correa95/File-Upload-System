@@ -3,7 +3,16 @@ from .models import File
 from django.contrib.auth.models import User
 
 
-class userSerializer(serializers.ModelSerializer):
+class FileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = File
+        fields = "__all__"
+
+    def create(self, validated_data):
+        return File.objects.create(use=self.context["request"].user, **validated_data)
+    
+
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = "__all__"
@@ -19,11 +28,3 @@ email = validated_data["email"])
         return user
 
 
-
-class FileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = File
-        fields = ['id', 'name', 'upload_timestamp', 'file']
-
-    def create(self, validated_data):
-        return File.objects.create(use=self.context["request"].user, **validated_data)

@@ -1,9 +1,12 @@
-{% extends "files/base.html" %} {% block title %} View all files {% endblock %} {% block body %}
+{% extends "files/base.html" %} {% block title %} All files {% endblock %} {% block body %}
+{% if files%}
 <ul>
   {% for file in files %}
   <li><a href="{% url "file" file.id %}">{{file.name}}</a></li>
   {% endfor %}
 </ul>
+{% else %}
+<p>You</p>
 <form action='{% url "upload" %}' method="POST" enctype="multipart/form-data">
   {% csrf_token %}
   {{ form }}

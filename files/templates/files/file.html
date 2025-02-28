@@ -10,9 +10,11 @@
 
     <label for="type">File type:</label>
     <input type="text" name="type" id="type" placeholder={{file.file_type}}/>
+
     <p>Uploaded: {{file.upload_timestamp}}</p>
     <button>Upload</button>
     </form>
+    
     <form action="{% url "delete" file.id %}"><button>Delete</button></form>
     <a href="{% url "files" %}">All files</a>
     <a href={{file.file.url}} download> Download</a>
