@@ -24,3 +24,6 @@ class FileSerializer(serializers.ModelSerializer):
     class Meta:
         model = File
         fields = ['id', 'name', 'upload_timestamp', 'file']
+
+    def create(self, validated_data):
+        return File.objects.create(use=self.context["request"].user, **validated_data)

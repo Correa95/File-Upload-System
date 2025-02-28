@@ -27,7 +27,7 @@ def files(request, format=None):
         return Response({'files': serializer.data})
         
     elif request.method == 'POST':
-        serializer = FileSerializer(data=request.data)
+        serializer = FileSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -42,7 +42,7 @@ def file(request, file_id):
         return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'GET':
         serializer = FileSerializer(data)
-    return Response({'file': serializer.data})
+        return Response({'file': serializer.data})
     
     elif request.method == 'PUT':
         name = request.POST.get('name')
