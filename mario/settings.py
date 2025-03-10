@@ -82,9 +82,9 @@ SIMPLE_JWT = {
     'SIGNING_KEY': os.environ.get('SECRET_JWT'),
 }
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-ALLOWED_HOSTS = ["*"]
+# # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = False
+# ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
