@@ -1,5 +1,16 @@
 
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# Virtual environment
+.venv/
+venv/
+
+
+
+# Django secret key and environment variables
+.env
+*.env
