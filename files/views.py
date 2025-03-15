@@ -14,13 +14,13 @@ from .forms import UploadForm
 
 # Create your views here.
 def home(request):
-     return HttpResponse("Hello there, you're at the home page.")
+#      return HttpResponse("Hello there, you're at the home page.")
 
-@api_view(['POST'])
-def register(request):
-     serializer = UserSerializer(data = request.data)
-     if serializer.is_valid():
-          serializer.save()
+# @api_view(['POST'])
+# def register(request):
+#      serializer = UserSerializer(data = request.data)
+#      if serializer.is_valid():
+#           serializer.save()
           return Response(status = status.HTTP_201_CREATED)
 
 @api_view(['GET', 'POST'])
