@@ -1,7 +1,5 @@
 <!-- extra resources: https://www.geeksforgeeks.org/dsa-tutorial-learn-data-structures-and-algorithms/ -->
 
-# Caleb-mentor-material
-
 # SQL Commands
 
 1. \?: give you help command options
