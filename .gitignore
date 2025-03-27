@@ -1,4 +1,8 @@
+files/__pycache__/*.pyc
 
+mario/__pycache__/*.pyc
+
+files/migrations/__pycache__/*.pyc
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
