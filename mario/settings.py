@@ -207,7 +207,28 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = 'static'
 
+
+# Configure Django to use S3 for static and media files
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+
+# AWS S3-specific settings
+AWS_S3_SESSION_PROFILE = 'eb-cli'
+AWS_STORAGE_BUCKET_NAME = 'files-learning'  # Replace with your bucket name
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+# Cache control and file disposition
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+    'ContentDisposition': 'attachment',
+}
+
+# Media file settings
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
+MEDIA_ROOT = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
