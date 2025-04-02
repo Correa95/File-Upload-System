@@ -214,7 +214,7 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
 # AWS S3-specific settings
 AWS_S3_SESSION_PROFILE = 'eb-cli'
-AWS_STORAGE_BUCKET_NAME = 'file-upload-system-bucket'  # Replace with your bucket name
+AWS_STORAGE_BUCKET_NAME = 'elasticbeanstalk-us-east-1-692859933508'  # Replace with your bucket name
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
 # Cache control and file disposition
