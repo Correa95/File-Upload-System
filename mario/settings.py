@@ -227,6 +227,8 @@ AWS_S3_OBJECT_PARAMETERS = {
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
 MEDIA_ROOT = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
 
+AWS_S3_FILE_OVERWRITE = False
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
