@@ -220,14 +220,13 @@ AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 # Cache control and file disposition
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
-    'ContentDisposition': 'attachment',
+    'ContentDisposition': 'attachment; filename="build.sh"',
 }
-
+AWS_S3_FILE_OVERWRITE = False
 # Media file settings
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
 MEDIA_ROOT = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
 
-AWS_S3_FILE_OVERWRITE = False
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
