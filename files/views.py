@@ -32,6 +32,13 @@ def files(request, format=None):
         data = request.user.file_set.all()
         serializer = FileSerializer(data, many=True)
         return Response({'files': serializer.data})
+    elif request.method == 'POST':
+        serializer = FileSerializer(data=request.data)
+        if serializer.is_valid():
+            settings.AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400', 
+						'ContentDisposition': 'attachment; filename="' + request.FILES['file'].name + '"'}
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
     # elif request.method == 'POST':
     #     serializer = FileSerializer(data=request.data, context={'request': request})
