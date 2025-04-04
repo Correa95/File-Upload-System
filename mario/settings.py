@@ -209,13 +209,14 @@ STATIC_ROOT = 'static'
 
 
 # Configure Django to use S3 for static and media files
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = "files.custom_storage.PrivateMediaStorage"
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
 # AWS S3-specific settings
 AWS_S3_SESSION_PROFILE = 'eb-cli'
 AWS_STORAGE_BUCKET_NAME = 'elasticbeanstalk-us-east-1-692859933508'  # Replace with your bucket name
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
 
 # Cache control and file disposition
 AWS_S3_OBJECT_PARAMETERS = {
