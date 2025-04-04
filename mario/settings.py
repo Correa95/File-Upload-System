@@ -217,7 +217,7 @@ AWS_S3_SESSION_PROFILE = 'eb-cli'
 AWS_STORAGE_BUCKET_NAME = 'elasticbeanstalk-us-east-1-692859933508'  # Replace with your bucket name
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
-
+AWS_S3_REGION_NAME = "us-east"
 # Cache control and file disposition
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',

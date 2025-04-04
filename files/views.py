@@ -33,13 +33,13 @@ def files(request, format=None):
         serializer = FileSerializer(data, many=True)
         return Response({'files': serializer.data})
         
-    elif request.method == 'POST':
-        serializer = FileSerializer(data=request.data, context={'request': request})
+    # elif request.method == 'POST':
+    #     serializer = FileSerializer(data=request.data, context={'request': request})
 
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 @api_view(['GET', "PATCH", "DELETE"])
 @permission_classes([IsAuthenticated])
