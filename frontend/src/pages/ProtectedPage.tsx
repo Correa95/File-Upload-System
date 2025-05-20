@@ -1,20 +1,21 @@
-import { useContext } from 'react';
+import { useContext } from "react";
 import axios from "../Axios";
-import { AuthContext } from '../context/Context';
+import { AuthContext } from "../context/Context";
 
-const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 export default function ProtectedContent() {
-
   const { tokenInfo } = useContext(AuthContext);
   console.log("protected content. tokenInfo: ", tokenInfo);
 
   const handleProtectedAction = async () => {
     try {
-      const response = await axios.get(`${backendUrl}/api/files`);
-      console.log('Protected action response:', response.data);
+      const response = await axios.get(
+        `${backendUrl}https://api.mathewcoolwebsite.com/api/files`
+      );
+      console.log("Protected action response:", response.data);
     } catch (error) {
-      console.error('Protected action failed', error);
+      console.error("Protected action failed", error);
     }
   };
 
