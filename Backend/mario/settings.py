@@ -170,8 +170,7 @@ print("connection details:", DATABASES)
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://mathewcoolwebsite.com",
-    "https://mathewcoolwebsite.com",
-    "https://https://d35cnh7nlkvj7c.cloudfront.net"
+    "https://mathewcoolwebsite.com"
     #whatever frontend URL you are using
 ]
 
