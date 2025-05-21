@@ -82,7 +82,7 @@ SIMPLE_JWT = {
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "file-upload-env.eba-bf76q3hm.us-east-1.elasticbeanstalk.com",  "api.mathewcoolwebsite.com" ]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "file-upload-env.eba-bf76q3hm.us-east-1.elasticbeanstalk.com",  "api.mathewcoolwebsite.com",   "mathewcoolwebsite.com",]
 
 
 # Application definition
