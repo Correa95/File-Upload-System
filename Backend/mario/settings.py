@@ -20,7 +20,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # SECRET_KEY = 'django-insecure-dg1ipt!zn!rtr)=l84u*gkcj4q0_z-vjqw5q^1!4%#fprqy4wv'
 # Django project settings.py
 
-
+SECRET_KEY = os.environ.get('SECRET_KEY')
+if not SECRET_KEY:
+    raise ValueError("SECRET_KEY not found in environment variables.")
 
 SIMPLE_JWT = {
       'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
@@ -69,20 +71,21 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
-# SIMPLE_JWT = {
-#     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-#     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-#     'ROTATE_REFRESH_TOKENS': True,
-#     'BLACKLIST_AFTER_ROTATION': True,
-#     'UPDATE_LAST_LOGIN': False,
 
-#     'ALGORITHM': 'HS256',
-#     'SIGNING_KEY': os.environ.get('SECRET_JWT'),
-# }
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", "file-upload-env.eba-bf76q3hm.us-east-1.elasticbeanstalk.com",  "api.mathewcoolwebsite.com",   "mathewcoolwebsite.com",]
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:8000",
+    "http://mathewcoolwebsite.com",
+    "https://mathewcoolwebsite.com",
+    "https://d35cnh7nlkvj7c.cloudfront.net"
+
+    #whatever frontend URL you are using
+]
+
+CORS_ALLOW_METHODS = ["GET", "POST", "OPTIONS"]
 
 
 # Application definition
@@ -139,9 +142,7 @@ WSGI_APPLICATION = 'mario.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-SECRET_KEY = os.environ.get('SECRET_KEY')
-if not SECRET_KEY:
-    raise ValueError("SECRET_KEY not found in environment variables.")
+
     
 
 
@@ -174,14 +175,7 @@ else:  # Otherwise, default to SQLite
 # printing connection detail
 print("connection details:", DATABASES)
 
-CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:8000",
-    "http://mathewcoolwebsite.com",
-    "https://mathewcoolwebsite.com"
-    #whatever frontend URL you are using
-]
 
-CORS_ALLOW_METHODS = ["GET", "POST", "OPTIONS"]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
